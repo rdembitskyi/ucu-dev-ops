@@ -1,0 +1,38 @@
+services:
+  chat-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    ports:
+      - 8000:8000
+    networks:
+      - llm-chat-network
+    environment:
+      FRONTEND_URL: http://localhost:5173
+    models:
+      llm:
+        endpoint_var: AI_MODEL_URL
+        model_var: AI_MODEL_NAME
+
+  chat-frontend:
+    depends_on:
+      - chat-app
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        VITE_BACKEND_URL: http://localhost:8000
+    ports:
+      - 5173:5173
+    networks:
+      - llm-chat-network
+
+
+models:
+  llm:
+    model: ai/smollm2:360M-Q4_K_M
+    context_size: 4096
+
+networks:
+  llm-chat-network:
+    driver: bridge

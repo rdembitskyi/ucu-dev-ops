@@ -1,0 +1,52 @@
+# Build stage
+FROM node:20-alpine AS builder
+
+# Create non-root user for build stage
+RUN adduser -D builduser
+
+# Set working directory
+WORKDIR /app
+
+# Accept build argument for backend URL
+ARG VITE_BACKEND_URL
+ENV VITE_BACKEND_URL=${VITE_BACKEND_URL}
+
+# Copy package files
+COPY --chown=builduser:builduser chat_frontend/package.json ./
+
+# Install dependencies
+RUN npm install
+
+# Switch to non-root user
+USER builduser
+
+# Copy application files
+COPY --chown=builduser:builduser chat_frontend/ ./
+
+# Build the application
+RUN npm run build
+
+# Production stage
+FROM nginx:alpine
+
+# Create non-root user for nginx
+RUN adduser -D nginx-user && \
+    chown -R nginx-user:nginx-user /var/cache/nginx && \
+    chown -R nginx-user:nginx-user /var/log/nginx && \
+    touch /var/run/nginx.pid && \
+    chown -R nginx-user:nginx-user /var/run/nginx.pid
+
+# Copy built files from builder stage
+COPY --from=builder --chown=nginx-user:nginx-user /app/dist /usr/share/nginx/html
+
+# Copy nginx configuration
+COPY --chown=nginx-user:nginx-user chat_frontend/nginx.conf /etc/nginx/conf.d/default.conf
+
+# Switch to non-root user
+USER nginx-user
+
+# Expose port 5173
+EXPOSE 5173
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
