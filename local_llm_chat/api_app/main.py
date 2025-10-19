@@ -29,7 +29,7 @@ async def root():
 @app.post("/chat")
 async def chat(request: ChatRequest):
     async with httpx.AsyncClient() as client:
-        api_endpoint = f"{AI_MODEL_URL}/chat/completions"
+        api_endpoint = f"{AI_MODEL_URL}/api/chat"
 
         response = await client.post(
             api_endpoint,
@@ -42,5 +42,5 @@ async def chat(request: ChatRequest):
         )
         response.raise_for_status()
         data = response.json()
-        content = data["choices"][0]["message"]["content"]
+        content = data["message"]["content"]
         return {"response": content}

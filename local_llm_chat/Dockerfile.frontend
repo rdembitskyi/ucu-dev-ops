@@ -7,6 +7,9 @@ RUN adduser -D builduser
 # Set working directory
 WORKDIR /app
 
+# Change ownership of /app to builduser
+RUN chown -R builduser:builduser /app
+
 # Accept build argument for backend URL
 ARG VITE_BACKEND_URL
 ENV VITE_BACKEND_URL=${VITE_BACKEND_URL}
@@ -14,11 +17,11 @@ ENV VITE_BACKEND_URL=${VITE_BACKEND_URL}
 # Copy package files
 COPY --chown=builduser:builduser chat_frontend/package.json ./
 
-# Install dependencies
-RUN npm install
-
 # Switch to non-root user
 USER builduser
+
+# Install dependencies
+RUN npm install
 
 # Copy application files
 COPY --chown=builduser:builduser chat_frontend/ ./

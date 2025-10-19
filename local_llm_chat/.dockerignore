@@ -1,0 +1,4 @@
+chat_frontend/node_modules
+chat_frontend/dist
+.env
+.git
