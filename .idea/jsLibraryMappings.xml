@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <excludedPredefinedLibrary name="dev-dataops/local_llm_chat_k8s/chat_frontend/node_modules" />
+  </component>
+</project>
