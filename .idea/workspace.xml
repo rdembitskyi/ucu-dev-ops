@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7a5c8cc-4c09-4ae0-989d-44cf2d26ac84" name="Changes" comment="" />
+    <list default="true" id="b7a5c8cc-4c09-4ae0-989d-44cf2d26ac84" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/local_llm_chat/k8s/frontend-service.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local_llm_chat/Dockerfile.frontend" beforeDir="false" afterPath="$PROJECT_DIR$/local_llm_chat/Dockerfile.frontend" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +23,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/llm_chat" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -52,18 +57,22 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Users/rostislavdembickij/PycharmProjects/dev-dataops",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "to.speed.mode.migration.done": "true",
     "ts.external.directory.path": "/Users/rostislavdembickij/Library/Application Support/JetBrains/PyCharm2025.2/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/llm_chat/chat_frontend" />
       <recent name="$PROJECT_DIR$/llm_chat" />
@@ -121,6 +130,24 @@
       <workItem from="1759582030290" duration="597000" />
       <workItem from="1759670687266" duration="7146000" />
       <workItem from="1759736774606" duration="7829000" />
+      <workItem from="1759771560351" duration="1604000" />
+      <workItem from="1759823483694" duration="764000" />
+      <workItem from="1759909618306" duration="598000" />
+      <workItem from="1759939735494" duration="598000" />
+      <workItem from="1759995424139" duration="598000" />
+      <workItem from="1760082354506" duration="581000" />
+      <workItem from="1760090536417" duration="593000" />
+      <workItem from="1760166213564" duration="598000" />
+      <workItem from="1760341385574" duration="598000" />
+      <workItem from="1760425564631" duration="598000" />
+      <workItem from="1760513396918" duration="598000" />
+      <workItem from="1760546903568" duration="595000" />
+      <workItem from="1760600170695" duration="598000" />
+      <workItem from="1760698642904" duration="2631000" />
+      <workItem from="1760792647065" duration="7262000" />
+      <workItem from="1760811751211" duration="603000" />
+      <workItem from="1760859666058" duration="598000" />
+      <workItem from="1760869888439" duration="1711000" />
     </task>
     <servers />
   </component>
@@ -133,7 +160,7 @@
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$/homework_1" />
-      <path value="$PROJECT_DIR$" />
+      <path value="$PROJECT_DIR$/llm_chat" />
     </ignored-roots>
   </component>
 </project>

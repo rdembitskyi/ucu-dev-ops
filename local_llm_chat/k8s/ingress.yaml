@@ -1,0 +1,25 @@
+#apiVersion: networking.k8s.io/v1 # Commented this as ingress in not working with mini cube on MacOS,
+# and Minikube IP is not reachable
+#kind: Ingress
+#metadata:
+#  name: llm-chat-ingress
+#  namespace: llm-chat
+#spec:
+#  rules:
+#    - host: llm-chat.local
+#      http:
+#        paths:
+#          - backend:
+#              service:
+#                name: chat-backend
+#                port:
+#                  number: 8000
+#            pathType: Prefix
+#            path: /api
+#          - backend:
+#              service:
+#                name: chat-frontend
+#                port:
+#                  number: 5173
+#            pathType: Prefix
+#            path: /
