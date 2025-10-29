@@ -1,9 +1,10 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: mongodb
   namespace: todo-app
 spec:
+  serviceName: mongodb
   replicas: 1
   selector:
     matchLabels:
@@ -32,7 +33,11 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "500m"
-      volumes:
-      - name: mongodb-storage
-        persistentVolumeClaim:
-          claimName: mongodb-pvc
+  volumeClaimTemplates:
+  - metadata:
+      name: mongodb-storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 64Mi
