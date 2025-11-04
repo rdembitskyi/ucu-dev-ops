@@ -4,4 +4,4 @@ metadata:
   name: frontend-config
   namespace: todo-app
 data:
-  REACT_APP_BACKEND_URL: "http://localhost:3001"
+  DANGEROUSLY_DISABLE_HOST_CHECK: "true"

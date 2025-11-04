@@ -17,6 +17,7 @@ spec:
       containers:
       - name: mongodb
         image: mongo:4.2.0
+        imagePullPolicy: Always
         ports:
         - containerPort: 27017
           name: mongodb
@@ -33,11 +34,14 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "500m"
-  volumeClaimTemplates:
-  - metadata:
-      name: mongodb-storage
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      resources:
-        requests:
-          storage: 64Mi
+#  volumeClaimTemplates:
+#    - metadata:
+#        name: mongodb-storage
+#      spec:
+#        accessModes: [ "ReadWriteOnce" ]
+#        resources:
+#          requests:
+#            storage: 64Mi
+      volumes: # Using emptyDir for simplicity; AWS EBS and other persistent storage can be configured here
+      - name: mongodb-storage
+        emptyDir: {}
