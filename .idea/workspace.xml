@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7a5c8cc-4c09-4ae0-989d-44cf2d26ac84" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/react-express-mongodb/k8s/deployments/base/kustomization.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/react-express-mongodb/k8s/deployments/overlays/v1/kustomization.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/react-express-mongodb/k8s/deployments/overlays/v2/kustomization.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-express-mongodb/k8s/backend-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/react-express-mongodb/k8s/deployments/base/backend-deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-express-mongodb/k8s/frontend-configmap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/react-express-mongodb/k8s/frontend-configmap.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-express-mongodb/k8s/frontend-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/react-express-mongodb/k8s/deployments/base/frontend-deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-express-mongodb/k8s/frontend-service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/react-express-mongodb/k8s/frontend-service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-express-mongodb/k8s/mongodb-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/react-express-mongodb/k8s/mongodb-set.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +155,7 @@
       <workItem from="1761813501182" duration="611000" />
       <workItem from="1761830834934" duration="597000" />
       <workItem from="1762163563579" duration="4668000" />
-      <workItem from="1762243927478" duration="15259000" />
+      <workItem from="1762243927478" duration="17092000" />
     </task>
     <servers />
   </component>

@@ -1,0 +1,72 @@
+name: CI - Test, Build and Push Images
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'react-express-mongodb/backend/**'
+      - 'react-express-mongodb/frontend/**'
+      - '.github/workflows/ci-build.yml'
+
+env:
+  AWS_REGION: eu-central-1
+  ECR_REPOSITORY: rd/todo-app
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+
+      - name: Test Backend
+        working-directory: ./react-express-mongodb/backend
+        run: |
+          npm ci
+          npm test
+
+      - name: Test Frontend
+        working-directory: ./react-express-mongodb/frontend
+        run: |
+          npm ci
+          CI=true npm test
+
+  build-and-push:
+    name: Build and Push Images
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push Backend image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:backend-latest ./react-express-mongodb/backend
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:backend-latest
+
+      - name: Build and push Frontend image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:frontend-latest ./react-express-mongodb/frontend
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:frontend-latest
