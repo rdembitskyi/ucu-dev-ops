@@ -1,0 +1,44 @@
+name: CD - Trigger ArgoCD Deployment
+
+on:
+  workflow_run:
+    workflows: ["CI - Test, Build and Push Images"]
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  trigger-argocd:
+    name: Trigger ArgoCD Sync
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Install ArgoCD CLI
+        run: |
+          curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+          chmod +x /usr/local/bin/argocd
+
+      - name: Trigger ArgoCD Sync
+        env:
+          ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }}
+          ARGOCD_AUTH_TOKEN: ${{ secrets.ARGOCD_AUTH_TOKEN }}
+        run: |
+          echo "Triggering ArgoCD sync for todo-app..."
+          argocd app sync todo-app --grpc-web --insecure --server $ARGOCD_SERVER --auth-token $ARGOCD_AUTH_TOKEN
+
+      - name: Wait for Sync to Complete
+        env:
+          ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }}
+          ARGOCD_AUTH_TOKEN: ${{ secrets.ARGOCD_AUTH_TOKEN }}
+        run: |
+          echo "Waiting for ArgoCD sync to complete..."
+          argocd app wait todo-app --grpc-web --insecure --server $ARGOCD_SERVER --auth-token $ARGOCD_AUTH_TOKEN --timeout 300
+
+      - name: Get Deployment Status
+        env:
+          ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }}
+          ARGOCD_AUTH_TOKEN: ${{ secrets.ARGOCD_AUTH_TOKEN }}
+        run: |
+          echo "=== ArgoCD Application Status ==="
+          argocd app get todo-app --grpc-web --insecure --server $ARGOCD_SERVER --auth-token $ARGOCD_AUTH_TOKEN

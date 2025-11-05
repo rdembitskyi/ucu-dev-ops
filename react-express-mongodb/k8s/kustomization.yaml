@@ -1,0 +1,18 @@
+# Combined manifests: static infrastructure + versioned deployments
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+# Static infrastructure manifests
+- todo-namespace.yaml
+- backend-configmap.yaml
+- frontend-configmap.yaml
+- mongodb-secret.yaml
+- backend-service.yaml
+- frontend-service.yaml
+- mongodb-service.yaml
+- storageclass.yaml
+- mongodb-set.yaml
+
+# Versioned application deployments
+- deployments/overlays/v1

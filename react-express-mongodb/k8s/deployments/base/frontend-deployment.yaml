@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ${AWS_ACCOUNT_ID}.dkr.ecr.eu-central-1.amazonaws.com/rd/todo-app:frontend-latest
+        image: 654654431435.dkr.ecr.eu-central-1.amazonaws.com/rd/todo-app:frontend-latest
         imagePullPolicy: Always
         envFrom:
           - configMapRef:

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: ${AWS_ACCOUNT_ID}.dkr.ecr.eu-central-1.amazonaws.com/rd/todo-app:backend-latest
+        image: 654654431435.dkr.ecr.eu-central-1.amazonaws.com/rd/todo-app:backend-latest
         imagePullPolicy: Always
         ports:
         - containerPort: 3001
